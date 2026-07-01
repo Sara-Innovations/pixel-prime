@@ -1,9 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { Search, ShoppingCart, Heart, User, Menu, Cpu } from "lucide-react";
+import { ThemeToggle } from "@/components/site/theme-toggle";
+
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-navy-deep/85 backdrop-blur-md border-b border-white/8">
+    <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-white/8">
       {/* Top bar */}
       <div className="hidden lg:block border-b border-white/5 text-xs text-muted-foreground">
         <div className="max-w-7xl mx-auto px-6 h-8 flex items-center justify-between">
@@ -17,13 +19,14 @@ export function Header() {
       </div>
 
       {/* Main bar */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-6 h-16 flex items-center gap-4 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 h-16 flex items-center gap-2 sm:gap-4 lg:gap-8">
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <div className="size-9 rounded-lg bg-gradient-to-br from-electric to-electric-glow grid place-items-center shadow-[var(--shadow-glow)]">
             <Cpu className="size-5 text-navy-deep" strokeWidth={2.5} />
           </div>
-          <span className="font-display font-bold text-lg tracking-tight text-foreground">
+          <span className="font-display font-bold text-base sm:text-lg tracking-tight text-foreground">
             NOVA<span className="text-electric">CORE</span>
+
           </span>
         </Link>
 
@@ -32,8 +35,9 @@ export function Header() {
           <input
             type="text"
             placeholder="Search laptops, GPUs, components…"
-            className="w-full bg-surface/60 border border-white/8 rounded-lg pl-10 pr-16 h-10 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-electric/40 focus:border-electric/40 transition"
+            className="w-full bg-surface/60 border border-white/8 rounded-lg pl-10 pr-16 h-10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-electric/40 focus:border-electric/40 transition"
           />
+
           <kbd className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 items-center gap-0.5 text-[10px] text-muted-foreground border border-white/10 rounded px-1.5 py-0.5 font-mono">
             ⌘K
           </kbd>
@@ -45,10 +49,12 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-1 shrink-0">
-          <button aria-label="Account" className="size-10 grid place-items-center rounded-lg hover:bg-white/5 transition-colors">
+          <ThemeToggle />
+          <button aria-label="Account" className="hidden sm:grid size-10 place-items-center rounded-lg hover:bg-white/5 transition-colors">
             <User className="size-5" />
           </button>
-          <button aria-label="Wishlist" className="size-10 grid place-items-center rounded-lg hover:bg-white/5 transition-colors">
+          <button aria-label="Wishlist" className="hidden sm:grid size-10 place-items-center rounded-lg hover:bg-white/5 transition-colors">
+
             <Heart className="size-5" />
           </button>
           <button aria-label="Cart" className="relative size-10 grid place-items-center rounded-lg hover:bg-white/5 transition-colors">
