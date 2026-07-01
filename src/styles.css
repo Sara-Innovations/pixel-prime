@@ -142,6 +142,15 @@
 .light .bg-navy-deep\/80 { background-color: oklch(1 0 0 / 0.85); }
 .light .bg-navy-deep\/70 { background-color: oklch(1 0 0 / 0.75); }
 
+/* Standalone bg-navy-deep (inputs, countdown tiles) should invert too */
+.light .bg-navy-deep { background-color: oklch(0.94 0.008 250); }
+.light .hover\:bg-navy:hover { background-color: oklch(0.90 0.01 250); }
+
+/* text-white in dark-only badges/labels should read on light chips */
+.light .text-white\/60 { color: oklch(0.35 0.02 258); }
+.light .text-white\/40 { color: oklch(0.55 0.02 258); }
+
+
 
 @layer base {
   * {
