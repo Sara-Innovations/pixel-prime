@@ -67,6 +67,19 @@ export function Header() {
         </div>
       </div>
 
+      {/* Mobile search */}
+      <div className="md:hidden border-t border-white/5 px-3 py-2">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Search products…"
+            className="w-full bg-surface/60 border border-white/8 rounded-lg pl-9 pr-3 h-9 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-electric/40"
+          />
+        </div>
+      </div>
+
+
       {/* Category strip */}
       <div className="border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 lg:px-6 flex gap-1 overflow-x-auto no-scrollbar text-sm whitespace-nowrap">
