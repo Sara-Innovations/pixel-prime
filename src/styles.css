@@ -52,7 +52,7 @@
   --radius: 0.75rem;
 
   /* Brand palette — dark navy dominant */
-  --navy-deep: oklch(0.14 0.04 260);      /* near-black navy */
+  --navy-deep: oklch(0.14 0.04 260);      /* near-black navy — kept fixed for text-on-electric */
   --navy: oklch(0.20 0.05 260);           /* deep navy */
   --surface: oklch(0.24 0.05 260);        /* card bg */
   --surface-2: oklch(0.30 0.045 260);     /* raised */
@@ -60,9 +60,9 @@
   --electric-glow: oklch(0.75 0.17 240);
   --cta: oklch(0.72 0.18 45);             /* orange */
   --cta-hover: oklch(0.68 0.19 42);
-  --success: oklch(0.72 0.17 155);
+  --success: oklch(0.55 0.17 155);
 
-  --background: var(--navy-deep);
+  --background: oklch(0.14 0.04 260);
   --foreground: oklch(0.98 0.005 250);
   --card: var(--surface);
   --card-foreground: oklch(0.98 0.005 250);
@@ -95,10 +95,53 @@
   --gradient-electric: linear-gradient(135deg, oklch(0.68 0.19 245), oklch(0.55 0.20 260));
 }
 
-.dark {
-  --background: var(--navy-deep);
-  --foreground: oklch(0.98 0.005 250);
+/* Light theme — swap surfaces & foreground; keep --navy-deep dark for text-on-electric usage */
+.light {
+  --navy: oklch(0.96 0.006 250);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.965 0.006 250);
+
+  --background: oklch(0.985 0.004 250);
+  --foreground: oklch(0.18 0.04 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 260);
+  --primary: var(--electric);
+  --primary-foreground: oklch(0.14 0.04 260);
+  --secondary: oklch(0.94 0.008 250);
+  --secondary-foreground: oklch(0.18 0.04 260);
+  --muted: oklch(0.95 0.006 250);
+  --muted-foreground: oklch(0.42 0.02 258);
+  --accent: oklch(0.94 0.01 250);
+  --accent-foreground: oklch(0.18 0.04 260);
+  --border: oklch(0.18 0.04 260 / 10%);
+  --input: oklch(0.18 0.04 260 / 12%);
+
+  --shadow-glow: 0 0 40px oklch(0.68 0.19 245 / 0.22);
+  --shadow-card: 0 1px 0 oklch(1 0 0 / 0.6) inset, 0 8px 20px -12px oklch(0.18 0.04 260 / 0.18);
+  --gradient-hero: radial-gradient(80% 60% at 70% 30%, oklch(0.68 0.19 245 / 0.18), transparent 60%),
+                   linear-gradient(180deg, oklch(0.985 0.004 250), oklch(0.94 0.01 250));
 }
+
+/* Light-mode overrides for hardcoded white/opacity utilities (built for the dark theme).
+   Uses navy ink at low opacity so borders/surfaces remain visible on light backgrounds. */
+.light .bg-white\/5 { background-color: oklch(0.18 0.04 260 / 0.045); }
+.light .bg-white\/10 { background-color: oklch(0.18 0.04 260 / 0.07); }
+.light .bg-white\/\[0\.02\] { background-color: oklch(0.18 0.04 260 / 0.025); }
+.light .hover\:bg-white\/5:hover { background-color: oklch(0.18 0.04 260 / 0.05); }
+.light .hover\:bg-white\/10:hover { background-color: oklch(0.18 0.04 260 / 0.08); }
+.light .border-white\/5 { border-color: oklch(0.18 0.04 260 / 0.07); }
+.light .border-white\/8 { border-color: oklch(0.18 0.04 260 / 0.09); }
+.light .border-white\/10 { border-color: oklch(0.18 0.04 260 / 0.12); }
+.light .border-white\/15 { border-color: oklch(0.18 0.04 260 / 0.16); }
+.light .hover\:border-white\/15:hover { border-color: oklch(0.18 0.04 260 / 0.18); }
+
+/* Header/nav overlays that used bg-navy-deep with alpha — flip to light surface in light mode */
+.light .bg-navy-deep\/85 { background-color: oklch(1 0 0 / 0.85); }
+.light .bg-navy-deep\/80 { background-color: oklch(1 0 0 / 0.85); }
+.light .bg-navy-deep\/70 { background-color: oklch(1 0 0 / 0.75); }
+
 
 @layer base {
   * {
