@@ -1,10 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Cpu, HardDrive, MemoryStick, Fan, Box, Zap, Monitor, Keyboard, Mouse, Headphones, Check, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/pc-builder")({
   head: () => ({
     meta: [
-      { title: "Custom PC Builder — NovaCore" },
+      { title: "Custom PC Builder — M.A Computer" },
       { name: "description", content: "Build your custom gaming or workstation PC with real-time compatibility checks, wattage estimator, and expert assembly." },
     ],
   }),
@@ -12,21 +12,21 @@ export const Route = createFileRoute("/pc-builder")({
 });
 
 const steps = [
-  { icon: Cpu, label: "Processor", selected: "AMD Ryzen 9 7950X", price: 549 },
-  { icon: Box, label: "Motherboard", selected: "ASUS ROG X670E-E", price: 499 },
-  { icon: MemoryStick, label: "Memory", selected: "G.Skill 64GB DDR5-6000", price: 249 },
-  { icon: Zap, label: "Graphics Card", selected: "RTX 4080 Super 16GB", price: 999 },
-  { icon: HardDrive, label: "Primary Storage", selected: "Samsung 990 Pro 2TB", price: 169 },
-  { icon: HardDrive, label: "Secondary Storage", selected: null, price: 0 },
-  { icon: Zap, label: "Power Supply", selected: "Corsair RM1000x", price: 219 },
-  { icon: Box, label: "Case", selected: "Lian Li O11 Dynamic EVO", price: 179 },
-  { icon: Fan, label: "CPU Cooler", selected: "NZXT Kraken 360 AIO", price: 259 },
-  { icon: Fan, label: "Case Fans", selected: null, price: 0 },
-  { icon: Monitor, label: "Monitor", selected: null, price: 0 },
-  { icon: Keyboard, label: "Keyboard", selected: null, price: 0 },
-  { icon: Mouse, label: "Mouse", selected: null, price: 0 },
-  { icon: Headphones, label: "Headset", selected: null, price: 0 },
-];
+  { slot: "processor", icon: Cpu, label: "Processor", selected: "AMD Ryzen 9 7950X", price: 54900 },
+  { slot: "motherboard", icon: Box, label: "Motherboard", selected: "ASUS ROG X670E-E", price: 49900 },
+  { slot: "memory", icon: MemoryStick, label: "Memory", selected: "G.Skill 64GB DDR5-6000", price: 24900 },
+  { slot: "graphics", icon: Zap, label: "Graphics Card", selected: "RTX 4080 Super 16GB", price: 129000 },
+  { slot: "storage", icon: HardDrive, label: "Primary Storage", selected: "Samsung 990 Pro 2TB", price: 16900 },
+  { slot: "storage", icon: HardDrive, label: "Secondary Storage", selected: null, price: 0 },
+  { slot: "psu", icon: Zap, label: "Power Supply", selected: "Corsair RM1000x", price: 21900 },
+  { slot: "case", icon: Box, label: "Case", selected: "Lian Li O11 Dynamic EVO", price: 17900 },
+  { slot: "cooler", icon: Fan, label: "CPU Cooler", selected: "NZXT Kraken 360 AIO", price: 25900 },
+  { slot: "cooler", icon: Fan, label: "Case Fans", selected: null, price: 0 },
+  { slot: "monitor", icon: Monitor, label: "Monitor", selected: null, price: 0 },
+  { slot: "keyboard", icon: Keyboard, label: "Keyboard", selected: null, price: 0 },
+  { slot: "mouse", icon: Mouse, label: "Mouse", selected: null, price: 0 },
+  { slot: "headset", icon: Headphones, label: "Headset", selected: null, price: 0 },
+] as const;
 
 function PCBuilder() {
   const total = steps.reduce((n, s) => n + s.price, 0);
@@ -55,13 +55,13 @@ function PCBuilder() {
               <div className="text-right shrink-0">
                 {s.selected ? (
                   <>
-                    <div className="text-sm font-bold font-display">${s.price}</div>
-                    <button className="text-xs text-electric hover:underline">Change</button>
+                    <div className="text-sm font-bold font-display">৳{s.price.toLocaleString()}</div>
+                    <Link to="/pc-builder/select/$slot" params={{ slot: s.slot }} className="text-xs text-electric hover:underline">Change</Link>
                   </>
                 ) : (
-                  <button className="inline-flex items-center gap-1.5 bg-electric/10 text-electric hover:bg-electric hover:text-navy-deep text-xs font-semibold px-3 h-8 rounded-lg transition-colors">
+                  <Link to="/pc-builder/select/$slot" params={{ slot: s.slot }} className="inline-flex items-center gap-1.5 bg-electric/10 text-electric hover:bg-electric hover:text-navy-deep text-xs font-semibold px-3 h-8 rounded-lg transition-colors">
                     Choose <ArrowRight className="size-3.5" />
-                  </button>
+                  </Link>
                 )}
               </div>
             </div>
@@ -83,18 +83,18 @@ function PCBuilder() {
               <Check className="size-4" /> All selected parts are compatible
             </div>
 
-            <div className="border-t border-white/8 pt-4 flex items-end justify-between mb-4">
+            <div className="border-t border-border pt-4 flex items-end justify-between mb-4">
               <span className="text-sm text-muted-foreground">Total</span>
-              <span className="text-3xl font-bold font-display">${total.toLocaleString()}</span>
+              <span className="text-3xl font-bold font-display">৳{total.toLocaleString()}</span>
             </div>
 
-            <button className="w-full bg-cta hover:bg-cta-hover text-white font-semibold py-3 rounded-lg transition-colors mb-2">
+            <button className="w-full bg-cta hover:bg-cta/90 text-white font-semibold py-3 rounded-lg transition-colors mb-2">
               Add build to cart
             </button>
             <div className="grid grid-cols-3 gap-2 text-xs">
-              <button className="border border-white/10 rounded-md py-2 hover:bg-white/5">Save</button>
-              <button className="border border-white/10 rounded-md py-2 hover:bg-white/5">Share</button>
-              <button className="border border-white/10 rounded-md py-2 hover:bg-white/5">Export</button>
+              <button className="border border-border rounded-md py-2 hover:bg-muted">Save</button>
+              <button className="border border-border rounded-md py-2 hover:bg-muted">Share</button>
+              <button className="border border-border rounded-md py-2 hover:bg-muted">Export</button>
             </div>
           </div>
         </aside>
