@@ -9,7 +9,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       onClick={toggle}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light mode" : "Dark mode"}
-      className={`size-10 grid place-items-center rounded-lg hover:bg-white/5 transition-colors ${className}`}
+      className={`size-10 grid place-items-center rounded-lg hover:bg-muted transition-colors ${className}`}
     >
       {isDark ? <Sun className="size-5" /> : <Moon className="size-5" />}
     </button>

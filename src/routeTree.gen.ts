@@ -13,7 +13,12 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as PcBuilderRouteImport } from './routes/pc-builder'
 import { Route as DealsRouteImport } from './routes/deals'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PcBuilderSelectSlotRouteImport } from './routes/pc-builder.select.$slot'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -35,46 +40,121 @@ const DealsRoute = DealsRouteImport.update({
   path: '/deals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PcBuilderSelectSlotRoute = PcBuilderSelectSlotRouteImport.update({
+  id: '/select/$slot',
+  path: '/select/$slot',
+  getParentRoute: () => PcBuilderRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/deals': typeof DealsRoute
-  '/pc-builder': typeof PcBuilderRoute
+  '/pc-builder': typeof PcBuilderRouteWithChildren
   '/products': typeof ProductsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/pc-builder/select/$slot': typeof PcBuilderSelectSlotRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/deals': typeof DealsRoute
-  '/pc-builder': typeof PcBuilderRoute
+  '/pc-builder': typeof PcBuilderRouteWithChildren
   '/products': typeof ProductsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/pc-builder/select/$slot': typeof PcBuilderSelectSlotRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/deals': typeof DealsRoute
-  '/pc-builder': typeof PcBuilderRoute
+  '/pc-builder': typeof PcBuilderRouteWithChildren
   '/products': typeof ProductsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/pc-builder/select/$slot': typeof PcBuilderSelectSlotRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/deals' | '/pc-builder' | '/products' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/auth'
+    | '/cart'
+    | '/checkout'
+    | '/deals'
+    | '/pc-builder'
+    | '/products'
+    | '/sitemap.xml'
+    | '/pc-builder/select/$slot'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/deals' | '/pc-builder' | '/products' | '/sitemap.xml'
-  id: '__root__' | '/' | '/deals' | '/pc-builder' | '/products' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/account'
+    | '/auth'
+    | '/cart'
+    | '/checkout'
+    | '/deals'
+    | '/pc-builder'
+    | '/products'
+    | '/sitemap.xml'
+    | '/pc-builder/select/$slot'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/auth'
+    | '/cart'
+    | '/checkout'
+    | '/deals'
+    | '/pc-builder'
+    | '/products'
+    | '/sitemap.xml'
+    | '/pc-builder/select/$slot'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRoute
+  AuthRoute: typeof AuthRoute
+  CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
   DealsRoute: typeof DealsRoute
-  PcBuilderRoute: typeof PcBuilderRoute
+  PcBuilderRoute: typeof PcBuilderRouteWithChildren
   ProductsRoute: typeof ProductsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
@@ -109,6 +189,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DealsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -116,26 +224,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pc-builder/select/$slot': {
+      id: '/pc-builder/select/$slot'
+      path: '/select/$slot'
+      fullPath: '/pc-builder/select/$slot'
+      preLoaderRoute: typeof PcBuilderSelectSlotRouteImport
+      parentRoute: typeof PcBuilderRoute
+    }
   }
 }
 
+interface PcBuilderRouteChildren {
+  PcBuilderSelectSlotRoute: typeof PcBuilderSelectSlotRoute
+}
+
+const PcBuilderRouteChildren: PcBuilderRouteChildren = {
+  PcBuilderSelectSlotRoute: PcBuilderSelectSlotRoute,
+}
+
+const PcBuilderRouteWithChildren = PcBuilderRoute._addFileChildren(
+  PcBuilderRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
+  AuthRoute: AuthRoute,
+  CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
   DealsRoute: DealsRoute,
-  PcBuilderRoute: PcBuilderRoute,
+  PcBuilderRoute: PcBuilderRouteWithChildren,
   ProductsRoute: ProductsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -1,5 +1,5 @@
-import { Link } from "@tanstack/react-router";
-import { Cpu, Twitter, Youtube, Instagram, Facebook } from "lucide-react";
+import { Twitter, Youtube, Instagram, Facebook } from "lucide-react";
+import { Logo } from "@/components/site/logo";
 
 const cols = [
   {
@@ -22,24 +22,17 @@ const cols = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/8 bg-background mt-24">
+    <footer className="border-t border-border bg-background mt-24 pb-20 lg:pb-0">
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
         <div className="grid gap-10 lg:grid-cols-12 mb-12">
           <div className="lg:col-span-4">
-            <Link to="/" className="flex items-center gap-2 mb-5">
-              <div className="size-9 rounded-lg bg-gradient-to-br from-electric to-electric-glow grid place-items-center">
-                <Cpu className="size-5 text-navy-deep" strokeWidth={2.5} />
-              </div>
-              <span className="font-display font-bold text-lg tracking-tight">
-                NOVA<span className="text-electric">CORE</span>
-              </span>
-            </Link>
+            <div className="mb-5"><Logo /></div>
             <p className="text-sm text-muted-foreground max-w-xs mb-6">
-              Engineered for enthusiasts, creators, and professionals. Elite computing hardware, expertly assembled.
+              Bangladesh's trusted destination for laptops, components and custom PC builds. Expertly assembled, warranty backed.
             </p>
             <div className="flex gap-2">
               {[Twitter, Instagram, Youtube, Facebook].map((Icon, i) => (
-                <a key={i} href="#" className="size-9 grid place-items-center rounded-lg border border-white/10 hover:border-electric hover:text-electric transition-colors">
+                <a key={i} href="#" aria-label="Social" className="size-9 grid place-items-center rounded-lg border border-border hover:border-electric hover:text-electric transition-colors">
                   <Icon className="size-4" />
                 </a>
               ))}
@@ -62,8 +55,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/8 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} NovaCore Systems. All rights reserved.</span>
+        <div className="border-t border-border pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-muted-foreground">
+          <span>© {new Date().getFullYear()} M.A Computer. All rights reserved.</span>
           <div className="flex gap-6">
             <a href="#" className="hover:text-foreground">Privacy</a>
             <a href="#" className="hover:text-foreground">Terms</a>
