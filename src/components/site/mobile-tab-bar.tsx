@@ -2,13 +2,14 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, LayoutGrid, Wrench, ShoppingCart, User } from "lucide-react";
 import { useCart } from "@/lib/cart-store";
 
-const items = [
+type Item = { to: string; label: string; icon: typeof Home; badge?: boolean };
+const items: Item[] = [
   { to: "/", label: "Home", icon: Home },
   { to: "/products", label: "Shop", icon: LayoutGrid },
   { to: "/pc-builder", label: "Builder", icon: Wrench },
   { to: "/cart", label: "Cart", icon: ShoppingCart, badge: true },
   { to: "/account", label: "Account", icon: User },
-] as const;
+];
 
 export function MobileTabBar() {
   const path = useRouterState({ select: (r) => r.location.pathname });
@@ -25,7 +26,7 @@ export function MobileTabBar() {
           return (
             <li key={it.to}>
               <Link
-                to={it.to}
+                to={it.to as "/" | "/products" | "/pc-builder" | "/cart" | "/account"}
                 className={`relative flex flex-col items-center gap-1 py-2.5 text-[10px] font-semibold uppercase tracking-wide transition-colors ${
                   active ? "text-electric" : "text-muted-foreground hover:text-foreground"
                 }`}
