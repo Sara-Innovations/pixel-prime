@@ -13,7 +13,9 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "../components/site/header";
 import { Footer } from "../components/site/footer";
+import { MobileTabBar } from "../components/site/mobile-tab-bar";
 import { ThemeProvider } from "../hooks/use-theme";
+import { Toaster } from "@/components/ui/sonner";
 
 
 function NotFoundComponent() {
@@ -73,14 +75,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NovaCore — Premium Computers, Laptops & Electronics" },
-      { name: "description", content: "Shop laptops, desktops, gaming PCs, GPUs, CPUs, monitors and components. Build your custom PC with expert compatibility checks and elite hardware." },
-      { name: "author", content: "NovaCore" },
-      { property: "og:title", content: "NovaCore — Premium Computers, Laptops & Electronics" },
-      { property: "og:description", content: "Elite computing hardware, custom PC builder, and next-day shipping on 20,000+ components." },
+      { title: "M.A Computer — Laptops, Components & Custom PCs in Bangladesh" },
+      { name: "description", content: "Shop laptops, desktops, gaming PCs, GPUs, CPUs, monitors and components at M.A Computer. Build your custom PC with expert compatibility checks and nationwide delivery in Bangladesh." },
+      { name: "author", content: "M.A Computer" },
+      { property: "og:title", content: "M.A Computer — Laptops, Components & Custom PCs" },
+      { property: "og:description", content: "Bangladesh's trusted tech destination. Custom PC builder, warranty-backed components, bKash & Nagad accepted." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@NovaCore" },
+      { name: "twitter:site", content: "@MAComputer" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -121,6 +123,8 @@ function RootComponent() {
             <Outlet />
           </main>
           <Footer />
+          <MobileTabBar />
+          <Toaster />
         </div>
       </ThemeProvider>
     </QueryClientProvider>
