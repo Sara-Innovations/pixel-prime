@@ -42,7 +42,7 @@ function AccountPage() {
   useEffect(() => {
     if (!user) return;
     supabase.from("orders").select("*").order("created_at", { ascending: false }).then(({ data }) => {
-      if (data) setOrders(data as OrderRow[]);
+      if (data) setOrders(data as unknown as OrderRow[]);
     });
     supabase.from("profiles").select("full_name, phone, avatar_url").eq("id", user.id).maybeSingle().then(({ data }) => {
       if (data) setProfile(data as Profile);
